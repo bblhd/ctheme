@@ -180,7 +180,6 @@ color_t ctheme_get(colorscheme_id_t id, colorscheme_level_t level, color_format_
 	colorscheme_level_t baseLevel = level;
 	
 	struct ColorEntry gotten = colortheme[id][level];
-	printf("new get\n");
 	while (gotten.isRef) {
 		if (gotten.reference.id == id && gotten.reference.level == level) {
 			id = COLORSCHEME_DEFAULT;
