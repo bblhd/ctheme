@@ -73,7 +73,7 @@ int ctheme_readEntry(char **data, struct ColorEntry *dest) {
 		if (entry.reference.id == COLORSCHEME_FINAL) return 0;
 		
 		if (**data >= '0' && **data <= '9') {
-			entry.reference.level = **data - 1;
+			entry.reference.level = **data - '0';
 			(*data)++;
 		} else {
 			entry.reference.level = REQUISITE_LEVEL;
@@ -82,7 +82,6 @@ int ctheme_readEntry(char **data, struct ColorEntry *dest) {
 	*dest = entry;
 	return 1;
 }
-
 
 int ctheme_readLine(char **data) {
 	ctheme_stepThroughNewline(data);
@@ -181,6 +180,7 @@ color_t ctheme_get(colorscheme_id_t id, colorscheme_level_t level, color_format_
 	colorscheme_level_t baseLevel = level;
 	
 	struct ColorEntry gotten = colortheme[id][level];
+	printf("new get\n");
 	while (gotten.isRef) {
 		if (gotten.reference.id == id && gotten.reference.level == level) {
 			id = COLORSCHEME_DEFAULT;
