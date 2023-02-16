@@ -7,16 +7,20 @@ terminals, text editors, file browsers, and window managers.
 To use this library, you have to compile and link `ctheme.c` with the main program,
 and then include `ctheme.h` wherever the library is used.
 
-Interfacing with the library is done using the functions `ctheme_load` and `ctheme_get`.
-Their function signatures are as follows:
+Interfacing with the library is done using the functions `ctheme_load`, `ctheme_get`,
+and `ctheme_set`. Their function protypes are as follows:
 
-- `void ctheme_load(char *path);`
+- `int ctheme_load(char *path);`
 - `color_t ctheme_get(colorscheme_id_t id, colorscheme_level_t level, color_format_t format);`
+- `void ctheme_set(colorscheme_id_t id, colorscheme_level_t level, color_t color, color_format_t format);`
 
 ### ctheme_load
 `ctheme_load` will load a configuration file from the given path and cache all of the
 information contained within. If the path given is null, then it will attempt to load
-from a file named `.ctheme` in the current user's home folder.
+from a file named `.ctheme` in the current user's home folder. 
+
+If no configuration file is found or it cannot be accessed, the function returns zero,
+otherwise it will be non-zero.
 
 ### ctheme_get
 `ctheme_get` will find a requested color and then return it in the given format.
@@ -35,6 +39,13 @@ The format specifies whether a dummy alpha channel should be provided and in wha
 the color channels should be in. The format names (`RGB`, `BGR`, `RGBA`, `BGRA`, `ARGB`, and `ABGR`)
 are written in little-endian, meaning that the color red using `RGB` would return `0x0000ff`,
 whereas `BGR` would return 0xff0000.
+
+### ctheme_set
+`ctheme_set` will change a requested color to a given color literal. It is intended to be used to
+set fallback colors should no configuration files be found.
+
+All of the parameters that are shared in common with `ctheme_get` mean the same thing. The main difference
+is that the color format is used for the input color instead of the output. The `color` parameter must be given in one of the 6 available formats.
 
 ### Configuration file
 
