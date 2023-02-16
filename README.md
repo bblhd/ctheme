@@ -1,7 +1,7 @@
 # ctheme
 Minimalist runtime color based theming engine library, designed to allow the syncing
-and runtime configuration of colors across different lightweight programs, ranging from
-text editors to window managers to terminals and file browsers.
+and runtime configuration of colors across different lightweight programs, such as
+terminals, text editors, file browsers, and window managers.
 
 ## Usage
 To use this library, you have to compile and link `ctheme.c` with the main program,
