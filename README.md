@@ -7,20 +7,27 @@ terminals, text editors, file browsers, and window managers.
 To use this library, you have to compile and link `ctheme.c` with the main program,
 and then include `ctheme.h` wherever the library is used.
 
-Interfacing with the library is done using the functions `ctheme_load`, `ctheme_get`,
+Interfacing with the library is done using the functions `ctheme_clear`, `ctheme_load`, `ctheme_get`,
 and `ctheme_set`. Their function protypes are as follows:
 
+- `void ctheme_clear();`
 - `int ctheme_load(char *path);`
 - `color_t ctheme_get(colorscheme_id_t id, colorscheme_level_t level, color_format_t format);`
 - `void ctheme_set(colorscheme_id_t id, colorscheme_level_t level, color_t color, color_format_t format);`
 
+### ctheme_clear
+`ctheme_clear` resets all colors to blank, and sets up all initial inheritance rules.
+It should be called at least once before using any other library functions, or most colors
+will not work correctly.
+
 ### ctheme_load
 `ctheme_load` will load a configuration file from the given path and cache all of the
-information contained within. If the path given is null, then it will attempt to load
+information contained within. If the path is relative, then it is assumed to be located
+in the user's home folder. If the path given is null, then it will attempt to load
 from a file named `.ctheme` in the current user's home folder. 
 
 If no configuration file is found or it cannot be accessed, the function returns zero,
-otherwise it will be non-zero.
+otherwise it will return non-zero.
 
 ### ctheme_get
 `ctheme_get` will find a requested color and then return it in the given format.
