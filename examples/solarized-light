@@ -16,5 +16,5 @@ strings   blue1 default
 operators light1 default
 keywords  green1 default
 classes   yellow1 default
-comments  dark2 default
+comments  light1 default
 special   red1 default
