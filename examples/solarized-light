@@ -12,8 +12,6 @@ magenta   #a054a3
 
 numbers   blue1 default
 strings   blue1 default
-
-operators light1 default
 keywords  green1 default
 classes   yellow1 default
 comments  light1 default
